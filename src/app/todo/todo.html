@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Todo App</h2>
+  <div>
+    <input [(ngModel)]="newTodoText" type="text" placeholder="Add new Todo" />
+    <button (click)="addTodo()">Add</button>
+  </div>
+  <ul>
+    @for (todo of todos$ | async; track todo.id) {
+    <li [class.completed]="todo.completed">
+      <span>{{ todo.text }}</span>
+      @if (!todo.completed) {
+        <button (click)="completeTodo(todo.id)">Complete</button>
+      }
+    </li>
+    }
+  </ul>
+</div>

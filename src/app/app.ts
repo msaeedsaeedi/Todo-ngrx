@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Todo } from './todo/todo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Todo],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-  protected title = 'Todo-ngrx';
-}
+export class App {}

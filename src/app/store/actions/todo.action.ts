@@ -6,6 +6,6 @@ export const addTodo = createAction(
 );
 
 export const completeTodo = createAction(
-  '[Todo] Remove Todo',
+  '[Todo] Complete Todo',
   props<{ id: number }>()
 );

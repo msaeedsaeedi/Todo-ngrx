@@ -6,7 +6,7 @@ export interface AppState {
 }
 
 export const selectTodoState = (state: AppState) => state.todo;
-export const SelectAllTodos = createSelector(
+export const selectAllTodos = createSelector(
   selectTodoState,
   (state: TodoState) => state.todos
 );

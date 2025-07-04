@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { SelectAllTodos, TodoActions } from '../store';
+import { selectAllTodos, TodoActions } from '../store';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class Todo {
   store = inject(Store);
-  todos$ = this.store.select(SelectAllTodos);
+  todos$ = this.store.select(selectAllTodos);
   newTodoText: string = '';
 
   addTodo() {

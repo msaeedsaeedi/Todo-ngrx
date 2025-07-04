@@ -1,4 +1,12 @@
 import { createAction, props } from '@ngrx/store';
+import { Todo } from '../models/todo.model';
+
+export const initTodos = createAction('[Todo] Init Todos');
+
+export const loadTodos = createAction(
+  '[Todo] Load Todos',
+  props<{ todos: Todo[] }>()
+);
 
 export const addTodo = createAction(
   '[Todo] Add Todo',

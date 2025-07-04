@@ -20,5 +20,9 @@ export const todoReducer = createReducer(
     todos: state.todos.map((todo) =>
       todo.id === id ? { ...todo, completed: true } : todo
     ),
+  })),
+  on(TodoActions.loadTodos, (state, { todos }) => ({
+    ...state,
+    todos,
   }))
 );

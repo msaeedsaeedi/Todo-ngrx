@@ -57,6 +57,21 @@ describe('TodoEffects', () => {
     });
   });
 
+  it('should save todos to localStorage on removeTodo action', (done) => {
+    const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
+    spyOn(store, 'select').and.returnValue(of(todos));
+    const action = TodoActions.removeTodo({ id: 1 });
+
+    actions$.next(action);
+    effects.saveTodos$.subscribe(() => {
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        'todos',
+        JSON.stringify(todos)
+      );
+      done();
+    });
+  });
+
   it('should save todos to localStorage on completeTodo action', (done) => {
     const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
     spyOn(store, 'select').and.returnValue(of(todos));

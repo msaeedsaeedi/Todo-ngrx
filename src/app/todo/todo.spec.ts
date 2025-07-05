@@ -48,6 +48,11 @@ describe('Todo', () => {
     expect(dispatchSpy).not.toHaveBeenCalled();
   });
 
+  it('should dispatch removeTodo action when removeTodo is called', () => {
+    component.removeTodo(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.removeTodo({ id: 1 }));
+  });
+
   it('should dispatch completeTodo action when completeTodo is called', () => {
     component.completeTodo(1);
     expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.completeTodo({ id: 1 }));

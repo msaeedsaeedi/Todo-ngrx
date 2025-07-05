@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import * as TodoActions from '../actions/todo.action';
-import { tap, map } from 'rxjs';
+import { tap, map, switchMap } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
 import { selectAllTodos } from '../selectors/todo.selector';
 
@@ -13,12 +13,18 @@ export class TodoEffects {
   saveTodos$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(TodoActions.addTodo, TodoActions.completeTodo),
-        tap(() => {
-          this.store.select(selectAllTodos).subscribe((todos) => {
-            localStorage.setItem('todos', JSON.stringify(todos));
-          });
-        })
+        ofType(
+          TodoActions.addTodo,
+          TodoActions.removeTodo,
+          TodoActions.completeTodo
+        ),
+        switchMap(() =>
+          this.store.select(selectAllTodos).pipe(
+            tap((todos) => {
+              localStorage.setItem('todos', JSON.stringify(todos));
+            })
+          )
+        )
       ),
     { dispatch: false }
   );

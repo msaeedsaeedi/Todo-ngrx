@@ -26,6 +26,14 @@ describe('TodoActions', () => {
     });
   });
 
+  it('should create a removeTodo action', () => {
+    const action = TodoActions.removeTodo({ id: 1 });
+    expect(action).toEqual({
+      type: '[Todo] Remove Todo',
+      id: 1,
+    });
+  });
+
   it('should create a completeTodo action', () => {
     const action = TodoActions.completeTodo({ id: 1 });
     expect(action).toEqual({

@@ -11,6 +11,7 @@
       @if (!todo.completed) {
         <button (click)="completeTodo(todo.id)">Complete</button>
       }
+      <button (click)="removeTodo(todo.id)">Remove</button>
     </li>
     }
   </ul>

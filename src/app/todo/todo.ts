@@ -22,11 +22,11 @@ export class Todo {
     }
   }
 
-  removeTodo(id: number) {
+  removeTodo(id: string) {
     this.store.dispatch(TodoActions.removeTodo({ id }));
   }
 
-  completeTodo(id: number) {
+  completeTodo(id: string) {
     this.store.dispatch(TodoActions.completeTodo({ id }));
   }
 }

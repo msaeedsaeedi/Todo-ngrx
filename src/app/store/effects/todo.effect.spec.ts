@@ -43,7 +43,7 @@ describe('TodoEffects', () => {
   });
 
   it('should save todos to localStorage on addTodo action', (done) => {
-    const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
+    const todos: Todo[] = [{ id: 'test-uuid', text: 'Test Todo', completed: false }];
     spyOn(store, 'select').and.returnValue(of(todos));
     const action = TodoActions.addTodo({ text: 'Test Todo' });
 
@@ -58,9 +58,9 @@ describe('TodoEffects', () => {
   });
 
   it('should save todos to localStorage on removeTodo action', (done) => {
-    const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
+    const todos: Todo[] = [{ id: 'test-uuid', text: 'Test Todo', completed: false }];
     spyOn(store, 'select').and.returnValue(of(todos));
-    const action = TodoActions.removeTodo({ id: 1 });
+    const action = TodoActions.removeTodo({ id: 'test-uuid' });
 
     actions$.next(action);
     effects.saveTodos$.subscribe(() => {
@@ -73,9 +73,9 @@ describe('TodoEffects', () => {
   });
 
   it('should save todos to localStorage on completeTodo action', (done) => {
-    const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
+    const todos: Todo[] = [{ id: 'test-uuid', text: 'Test Todo', completed: false }];
     spyOn(store, 'select').and.returnValue(of(todos));
-    const action = TodoActions.completeTodo({ id: 1 });
+    const action = TodoActions.completeTodo({ id: 'test-uuid' });
 
     actions$.next(action);
     effects.saveTodos$.subscribe(() => {
@@ -88,7 +88,7 @@ describe('TodoEffects', () => {
   });
 
   it('should load todos from localStorage on initTodos action', (done) => {
-    const todos = [{ id: 1, text: 'Test Todo', completed: false }];
+    const todos = [{ id: 'test-uuid', text: 'Test Todo', completed: false }];
     localStorageMock['todos'] = JSON.stringify(todos);
     const action = TodoActions.initTodos();
 
@@ -127,11 +127,11 @@ describe('TodoEffects', () => {
 
   it('should log completeTodo action', (done) => {
     spyOn(console, 'log');
-    const action = TodoActions.completeTodo({ id: 1 });
+    const action = TodoActions.completeTodo({ id: 'test-uuid' });
     actions$.next(action);
 
     effects.logCompleteTodo$.subscribe(() => {
-      expect(console.log).toHaveBeenCalledWith('Completed todo with ID: 1');
+      expect(console.log).toHaveBeenCalledWith('Completed todo with ID: test-uuid');
       done();
     });
   });

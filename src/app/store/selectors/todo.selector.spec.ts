@@ -4,8 +4,8 @@ describe('TodoSelectors', () => {
   const mockState: AppState = {
     todo: {
       todos: [
-        { id: 1, text: 'Test Todo', completed: false },
-        { id: 2, text: 'Another Todo', completed: true },
+        { id: 'uuid-1', text: 'Test Todo', completed: false },
+        { id: 'uuid-2', text: 'Another Todo', completed: true },
       ],
     },
   };

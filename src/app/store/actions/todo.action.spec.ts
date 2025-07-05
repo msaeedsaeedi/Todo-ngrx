@@ -10,7 +10,7 @@ describe('TodoActions', () => {
   });
 
   it('should create loadTodos action', () => {
-    const todos: Todo[] = [{ id: 1, text: 'Test Todo', completed: false }];
+    const todos: Todo[] = [{ id: 'test-uuid', text: 'Test Todo', completed: false }];
     const action = TodoActions.loadTodos({ todos });
     expect(action).toEqual({
       type: '[Todo] Load Todos',
@@ -27,18 +27,18 @@ describe('TodoActions', () => {
   });
 
   it('should create a removeTodo action', () => {
-    const action = TodoActions.removeTodo({ id: 1 });
+    const action = TodoActions.removeTodo({ id: 'test-uuid' });
     expect(action).toEqual({
       type: '[Todo] Remove Todo',
-      id: 1,
+      id: 'test-uuid',
     });
   });
 
   it('should create a completeTodo action', () => {
-    const action = TodoActions.completeTodo({ id: 1 });
+    const action = TodoActions.completeTodo({ id: 'test-uuid' });
     expect(action).toEqual({
       type: '[Todo] Complete Todo',
-      id: 1,
+      id: 'test-uuid',
     });
   });
 });

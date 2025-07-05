@@ -17,7 +17,7 @@ describe('Todo', () => {
       providers: [provideMockStore({
         initialState: {
           todo: {
-            todos: [{ id: 1, text: 'Test Todo', completed: false }]
+            todos: [{ id: 'test-uuid', text: 'Test Todo', completed: false }]
           }
         }
       })],
@@ -49,13 +49,13 @@ describe('Todo', () => {
   });
 
   it('should dispatch removeTodo action when removeTodo is called', () => {
-    component.removeTodo(1);
-    expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.removeTodo({ id: 1 }));
+    component.removeTodo('test-uuid');
+    expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.removeTodo({ id: 'test-uuid' }));
   });
 
   it('should dispatch completeTodo action when completeTodo is called', () => {
-    component.completeTodo(1);
-    expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.completeTodo({ id: 1 }));
+    component.completeTodo('test-uuid');
+    expect(dispatchSpy).toHaveBeenCalledWith(TodoActions.completeTodo({ id: 'test-uuid' }));
   });
 
   it('should display todos from the store', ()=> {
